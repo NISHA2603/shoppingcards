@@ -18,6 +18,9 @@ class SearchScreen extends StatelessWidget {
   var name = ["shampoo", "oil", "shampoo", "oil"];
   var scrollController = ScrollController();
   var pname;
+  var volume = ["100ml", "200ml", "300ml","100ml"];
+
+  var price =["300","200","300","500"];
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +36,11 @@ class SearchScreen extends StatelessWidget {
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           actions: [
-            IconButton(onPressed: () {
-              Get.to(DetailsScreen());
-            }, icon: Icon(Icons.add_shopping_cart))
+            IconButton(
+                onPressed: () {
+                  Get.to(MyCart());
+                },
+                icon: Icon(Icons.add_shopping_cart))
           ],
         ),
         body: SingleChildScrollView(
@@ -101,6 +106,12 @@ class SearchScreen extends StatelessWidget {
                   return CardWidget(
                     img: imgList[index],
                     name: name[index],
+                    onTap: () {
+                      Get.to(DetailsScreen(
+                        name: name[index],
+                        img: imgList[index], Volume: volume[index], Price: price[index].toString(),
+                      ));
+                    },
                   );
                 }),
               ),

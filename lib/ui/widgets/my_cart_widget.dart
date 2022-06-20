@@ -78,7 +78,6 @@ class MyCartWidget extends StatelessWidget {
       // color: Colors.blueAccent,
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.start,
-
         children: [
           _qtyButton(Icons.remove, Colors.brown),
           SizedBox(

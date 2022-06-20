@@ -13,7 +13,7 @@ class body extends StatelessWidget {
           margin: EdgeInsets.only(top:30.0),
           height: 500,
           decoration: BoxDecoration(
-            color: Colors.amber,
+            color: Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20.0),
 

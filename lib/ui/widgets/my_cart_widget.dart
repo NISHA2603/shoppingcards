@@ -2,21 +2,36 @@ import 'package:flutter/material.dart';
 
 class MyCartWidget extends StatelessWidget {
   const MyCartWidget(
-      {Key? key, required this.img, required this.name, required this.volume})
+      {Key? key,
+      required this.img,
+      required this.name,
+      required this.volume,
+      required this.price})
       : super(key: key);
-
   final String img;
   final String name;
   final String volume;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
+           padding: EdgeInsets.all(12),
+          margin: EdgeInsets.all(15),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
-            // color: Colors.brown,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(3,2),
+                spreadRadius: 2,
+                blurRadius: 9,
+
+              )
+            ],
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.white
           ),
           child: Row(
             children: [
@@ -30,24 +45,27 @@ class MyCartWidget extends StatelessWidget {
                       image: AssetImage(img), fit: BoxFit.cover),
                 ),
               ),
+              SizedBox(
+                width: 20,
+              ),
               _content()
             ],
           ),
         ),
-        _cancelBut()
+        _cancelBut(),
       ],
     );
   }
 
   Widget _cancelBut() {
     return Positioned(
-      top: 5.0,
-      right: 10.0,
+      top: 15.0,
+      right: 15.0,
       child: CircleAvatar(
         backgroundColor: Colors.white,
         child: Icon(
-          Icons.cancel_sharp,
-          color: Colors.grey,
+          Icons.cancel,
+          color: Colors.black,
         ),
       ),
     );
@@ -59,14 +77,27 @@ class MyCartWidget extends StatelessWidget {
         // color: Colors.amber,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [_productName(), _prodDetails(), _qty()],
+          children: [
+            _productName(),
+            SizedBox(
+              height: 5.0,
+            ),
+            _prodDetails(),
+            SizedBox(
+              height: 10.0,
+            ),
+            _qty()
+          ],
         ),
       ),
     );
   }
 
   Widget _productName() {
-    return Text(name);
+    return Text(
+      name,
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+    );
   }
 
   Widget _prodDetails() {
@@ -91,11 +122,17 @@ class MyCartWidget extends StatelessWidget {
       ),
     );
   }
-
   Widget _priceWidget() {
     return Container(
-      // color: Colors.amber,
-      child: Text("\$220"),
+      padding: EdgeInsets.all(8),
+      alignment: Alignment.center,
+      // width: 55,
+      // height: 20,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.amber,
+      ),
+      child: Text("\$" + price),
     );
   }
 
@@ -103,8 +140,11 @@ class MyCartWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: CircleAvatar(
-        radius: 13,
-        child: Icon(icon),
+        radius: 10,
+        child: Icon(
+          icon,
+          size: 20,
+        ),
         backgroundColor: color,
       ),
     );
